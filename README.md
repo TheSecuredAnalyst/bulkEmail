@@ -41,55 +41,46 @@ Production-grade CLI bulk emailer with secrets in `.env`, CSV recipients, HTML t
 - SMTP account or SendGrid API key
 
 ## Installation
-```bash
+
 composer install --no-dev --prefer-dist
 cp .env.example .env
 # edit .env with your values
-Configuration
+
+## Configuration
 Set in .env (see .env.example for full list):
 
 MAIL_TRANSPORT=smtp|sendgrid
-
 For SMTP: SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASS
-
 For SendGrid: SENDGRID_API_KEY
-
 Sender: MAIL_FROM, MAIL_FROM_NAME, (optional) MAIL_REPLY_TO
-
 Paths: TEMPLATE_PATH=templates/notice.html, RECIPIENTS_CSV=data/recipients.csv, LOG_PATH=logs/mailer.log
-
 Behavior: RATE_LIMIT_PER_MINUTE, MAX_RETRIES, RETRY_DELAY_SECONDS
-
 Optional: GLOBAL_CC, GLOBAL_BCC, UNSUB_BASE, INTERNAL_DIRECTIVE=true|false
 
-CSV Schema
+## CSV Schema
 Header row is required. Suggested minimal schema:
 
-pgsql
-Copy code
-email,name,cc,bcc
-email required; others optional (comma-separated for cc/bcc).
+code
+- email,name,cc,bcc
 
+email required; others optional (comma-separated for cc/bcc).
 You do not need today or ref_id; they are injected automatically.
 
-Example:
+## Example:
 
 code
 email,name,cc,bcc
 alice@example.org,Alice,,
 bob@example.org,Bob,,archive@example.org
 
-Templates & Tokens
-Use templates/notice.html. Available tokens:
+## Templates & Tokens
+- Use templates/notice.html. Available tokens:
 
 {{name}}, {{email}}, {{today}} (e.g., 14 Oct 2025), {{ref_id}} (e.g., 20251014-0001)
-
 You may add arbitrary tokens via CSV headers (e.g., logo_url, logo_href, org_name, org_unit)
 
-Snippet:
+## Snippet:
 
-html
-code
 <a href="{{logo_href}}" target="_blank" style="text-decoration:none;">
   <img src="{{logo_url}}" alt="Logo" style="display:block; height:52px; width:auto; border:0;">
 </a>
@@ -106,41 +97,33 @@ DRY_RUN=true php bulk_emailer.php
 code
 TEST_MODE=true TEST_TO=you@example.org php bulk_emailer.php
 
-##Send for real:
+## Send for real:
 code
 php bulk_emailer.php
-CC/BCC Modes
+
+## CC/BCC Modes
 Global: set GLOBAL_CC / GLOBAL_BCC in .env (comma-separated).
-
 Per-recipient: add cc / bcc columns in CSV.
-
 Tip: use BCC for audit/compliance to avoid exposing recipients.
 
-Internal vs External Sends
+## Internal vs External Sends
 Internal memos: set INTERNAL_DIRECTIVE=true (suppresses List-Unsubscribe).
-
 External/campaigns: INTERNAL_DIRECTIVE=false and set UNSUB_BASE=https://example.org/unsub.
 
-Deliverability
+## Deliverability
 Configure SPF/DKIM/DMARC for your sending domain.
-
 Keep RATE_LIMIT_PER_MINUTE conservative when warming up.
-
 Clean HTML + automatic plain-text part; avoid spammy content.
-
 Maintain list hygiene; handle bounces (future improvement).
 
-Troubleshooting
+## Troubleshooting
 Dotenv class not found: run composer install; ensure vendor/autoload.php is required.
-
 No CC/BCC received: verify CSV headers include cc,bcc; check spam and rate limits.
-
 Gmail SMTP: use an App Password with 2FA; standard passwords often fail.
 
-Security
+## Security
 Never commit .env, real CSVs, logs, or keys. See .gitignore.
-
 Use .env.example with example.org placeholders for documentation only.
 
-License
+## License
 MIT — see LICENSE.
