@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Policy Notice</title>
+  </head>
+  <body style="margin:0; padding:0; background:#FFFFFF;">
+    <center style="width:100%; background:#FFFFFF;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width:640px; margin:0 auto; background:#FFFFFF;">
+        <!-- Header -->
+        <tr>
+          <td style="padding:16px 20px; border-bottom:2px solid #0B57D0;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+              <tr>
+                <td style="width:64px;">
+                  <!-- Optional: provide {{logo_url}} in CSV or leave blank -->
+                  <a href="{{logo_href}}" target="_blank" style="text-decoration:none;">
+                    <img src="{{logo_url}}" alt="Organization Logo" style="display:block; height:52px; width:auto; border:0;">
+                  </a>
+                </td>
+                <td style="padding-left:12px; font-family:Arial,Helvetica,sans-serif; font-size:14px; line-height:18px; color:#111827;">
+                  <strong>{{org_name}}</strong><br>
+                  {{org_unit}}
+                </td>
+                <td style="text-align:right; font-family:Arial,Helvetica,sans-serif; font-size:12px; color:#6B7280;">
+                  Ref: {{ref_id}}<br>Date: {{today}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Body -->
+        <tr>
+          <td style="padding:22px 20px; font-family:Arial,Helvetica,sans-serif; color:#111827; font-size:16px; line-height:24px;">
+            <p style="margin:0 0 14px 0;">Dear {{name}},</p>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 16px 0;">
+              <tr>
+                <td style="background:#E8F1FF; border:1px solid #B5D0FF; padding:12px 14px; font-size:15px;">
+                  <strong style="color:#0B57D0;">Policy Notice</strong>
+                  <div style="margin-top:6px;">
+                    This is an important policy communication. Please review and comply.
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 12px 0;">
+              {{message_intro}}
+            </p>
+
+            <ul style="margin:0 0 12px 22px; padding:0; font-size:16px; line-height:24px;">
+              <li>{{point_1}}</li>
+              <li>{{point_2}}</li>
+              <li>{{point_3}}</li>
+            </ul>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:16px 0;">
+              <tr>
+                <td style="background:#FFF5E6; border:2px solid #F2A900; padding:14px;">
+                  <strong style="display:block; color:#8A5A00; margin-bottom:6px; text-transform:uppercase;">Action Required</strong>
+                  {{action_required}}
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:18px 0 0 0;">
+              Regards,<br>
+              <strong>{{sender_name}}</strong><br>
+              {{sender_org}}
+            </p>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:14px 20px; border-top:1px solid #E5E7EB; background:#F9FAFB; font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:18px; color:#6B7280;">
+            This communication may contain confidential information and is intended for the addressee only.
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
